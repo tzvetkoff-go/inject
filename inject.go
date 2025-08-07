@@ -37,6 +37,15 @@ func (i *Injector) ProvideObject(name string, object interface{}) {
 	}
 }
 
+// GetObject returns an object by name.
+func (i *Injector) GetObject(name string, typ interface{}) interface{} {
+	if provider := i.Providers[name]; provider != nil {
+		return provider(typ)
+	}
+
+	return nil
+}
+
 // Inject injects all injectable fields.
 func (i *Injector) Inject(objects ...interface{}) error {
 	for _, object := range objects {

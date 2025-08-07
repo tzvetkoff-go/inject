@@ -72,10 +72,12 @@ func ExampleInjector_Inject() {
 		panic("itemService.itemRepository should be of type *CachingItemRepository")
 	}
 
+	fmt.Printf("%T\n", injector.GetObject("DatabaseConnection", nil))
 	fmt.Printf("%T\n", cachingItemRepository.StandardItemRepository)
 	fmt.Printf("%T\n", itemService.ItemRepository)
 
 	// Output:
+	// *inject_test.DatabaseConnection
 	// *inject_test.StandardItemRepository
 	// *inject_test.CachingItemRepository
 }
